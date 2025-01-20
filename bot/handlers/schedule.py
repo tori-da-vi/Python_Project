@@ -143,9 +143,13 @@ async def reset_schedule(callback_query: types.CallbackQuery, state: FSMContext)
     )
 
 
-# Установка расписания
+# Сброс расписания и установка нового
 @router.callback_query(lambda c: c.data == "set_schedule")
 async def set_schedule(callback_query: types.CallbackQuery, state: FSMContext):
+    # Сначала сбрасываем старое расписание
+    delete_schedule_from_csv(callback_query.from_user.id)
+
+    # Устанавливаем новое расписание
     await state.set_state(ScheduleStates.waiting_for_day_selection)
 
     builder = InlineKeyboardBuilder()
@@ -154,6 +158,8 @@ async def set_schedule(callback_query: types.CallbackQuery, state: FSMContext):
 
     await callback_query.message.edit_text("Выберите, в какие дни вы хотите заниматься:",
                                            reply_markup=builder.as_markup())
+
+
 
 
 # Выбор дня
@@ -215,10 +221,6 @@ async def finish_schedule(callback_query: types.CallbackQuery, state: FSMContext
 
     await request_time_for_next_day(callback_query.message, state)
 
-
-
-# Запрос времени для следующего дня
-# Запрос времени для следующего дня
 async def request_time_for_next_day(message: Message, state: FSMContext):
     data = await state.get_data()
     current_day_index = data.get("current_day_index", 0)

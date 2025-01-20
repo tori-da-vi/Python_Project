@@ -10,7 +10,7 @@ from bot.handlers.coach import router as coach_router
 # Настроим логирование
 logging.basicConfig(level=logging.INFO)
 
-API_TOKEN = "8172487665:AAF_1slvsHesQEPdWbkDCpqgf43PmgL2ffs"
+API_TOKEN = "7310029525:AAH4P4RCvq8M2squVjeK8H3ogMsOMYMjFL4"
 
 async def main():
     bot = Bot(token=API_TOKEN)
