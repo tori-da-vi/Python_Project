@@ -36,6 +36,7 @@
 import logging
 from aiogram import Router
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, Message
+from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
 from bot.handlers import workout
 from bot.handlers import feedback
@@ -93,9 +94,11 @@ async def workout_history_button(message: Message):
 
 # Обработка нажатия кнопки "Обратная связь"
 @router.message(lambda message: message.text == "👩‍💻 Обратная связь")
-async def feedback_button(message: Message):
+async def feedback_button(message: Message, state: FSMContext):
     # Вызов команды /feedback из файла feedback.py
-    await feedback.feedback(message)
+    await feedback.feedback(message, state)
+
+
 
 # Обработка нажатия кнопки "Коуч"
 @router.message(lambda message: message.text == "🪬 Коуч")

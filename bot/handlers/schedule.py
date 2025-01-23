@@ -284,12 +284,6 @@ async def set_time(message: Message, state: FSMContext):
         await message.answer("Время должно быть в формате ЧЧ:ММ и быть в пределах от 00:00 до 23:59.")
 
 
-
-# Отправка уведомлений
-async def send_notification(chat_id: int, day: str):
-    await router.bot.send_message(chat_id, f"Пора начинать тренировку в день {day}!")
-
-
 # Запуск планировщика
 async def start_scheduler():
     scheduler.start()

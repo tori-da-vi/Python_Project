@@ -113,11 +113,11 @@ async def end_dialog(message: Message):
     await message.answer("Вы завершили диалог с Пабло. Возвращаемся в главное меню.")
 
     # Восстанавливаем стандартное меню
-    button1 = KeyboardButton(text="Расписание")
-    button2 = KeyboardButton(text="Тренировка")
-    button3 = KeyboardButton(text="История тренировок")
-    button4 = KeyboardButton(text="Обратная связь")
-    button5 = KeyboardButton(text="Коуч")
+    button1 = KeyboardButton(text="📆 Расписание")  # Кнопка для расписания
+    button2 = KeyboardButton(text="🧘🏻 Тренировка")  # Кнопка для тренировки
+    button3 = KeyboardButton(text="⏰ История тренировок")  # Кнопка для истории тренировок
+    button4 = KeyboardButton(text="👩‍💻 Обратная связь")  # Кнопка для обратной связи
+    button5 = KeyboardButton(text="🪬 Коуч")
 
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
